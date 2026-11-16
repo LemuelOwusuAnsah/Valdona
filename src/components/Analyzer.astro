@@ -1,0 +1,41 @@
+<section class="card">
+  <label class="field-label" for="password">Password</label>
+  <div class="input-wrap">
+    <input type="password" id="password" autocomplete="off" placeholder="Type to analyze..." />
+    <button type="button" id="toggleVisibility" class="toggle-visibility" aria-label="Show password">
+      <svg id="eyeOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+      <svg id="eyeClosed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+        <line x1="1" y1="1" x2="23" y2="23"/>
+      </svg>
+    </button>
+  </div>
+  <div class="strength-bar"><div id="strengthFill" class="strength-fill"></div></div>
+  <p id="strengthLabel" class="strength-label">&mdash;</p>
+  <ul id="checks" class="checks"></ul>
+  <p class="entropy">Estimated entropy: <strong id="entropy">0</strong> bits</p>
+</section>
+
+<style>
+  .input-wrap { position: relative; display: flex; align-items: center; }
+  input[type='password'], input[type='text'] { width: 100%; padding: 0.75rem 2.75rem 0.75rem 0.9rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--fg); font: inherit; outline: none; transition: border-color 0.15s; }
+  input[type='password']:focus, input[type='text']:focus { border-color: var(--border-strong); }
+  input::placeholder { color: var(--fg-dim); }
+  .toggle-visibility { position: absolute; right: 0.4rem; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; background: transparent; border: none; color: var(--fg-muted); cursor: pointer; border-radius: 8px; }
+  .toggle-visibility:hover { color: var(--fg); background: var(--border); }
+  .toggle-visibility svg { width: 16px; height: 16px; }
+  .strength-bar { height: 4px; background: var(--border); border-radius: var(--radius-pill); margin: 1.25rem 0 0.5rem; overflow: hidden; }
+  .strength-fill { height: 100%; width: 0%; background: var(--danger); border-radius: var(--radius-pill); transition: width 0.3s ease, background 0.3s ease; }
+  .strength-label { text-align: center; font-size: 0.85rem; font-weight: 500; color: var(--fg-muted); margin: 0 0 1.25rem; }
+  .checks { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: 2px; }
+  :global(.checks li) { display: flex; align-items: center; gap: 0.6rem; font-size: 0.875rem; padding: 0.4rem 0.5rem; border-radius: 8px; color: var(--fg-muted); }
+  :global(.checks li svg) { width: 14px; height: 14px; flex-shrink: 0; }
+  :global(.checks li.pass) { color: var(--fg); }
+  :global(.checks li.pass svg) { color: var(--accent); }
+  :global(.checks li.fail svg) { color: var(--danger); }
+  .entropy { font-size: 0.8rem; color: var(--fg-muted); margin: 0; padding-top: 1rem; border-top: 1px solid var(--border); }
+  .entropy strong { color: var(--fg); font-weight: 600; }
+</style>

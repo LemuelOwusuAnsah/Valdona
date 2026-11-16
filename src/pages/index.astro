@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import Analyzer from '../components/Analyzer.astro';
+import Generator from '../components/Generator.astro';
+---
+
+<Base title="Valdona" description="Check password strength and generate strong passwords.">
+  <Analyzer />
+  <Generator />
+</Base>
+
+<script>
+  import '../scripts/client';
+</script>
